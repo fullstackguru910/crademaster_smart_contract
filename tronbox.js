@@ -53,9 +53,6 @@ Then, run the migration with:
               runs: 200
           }
         },
-        evmVersion: 'istanbul',
-        viaIR: true,
-        solcFilePath: "C:/Users/sapxhire/.tronbox/solc/soljson_v0.8.6.js"
       }
     }
   },
